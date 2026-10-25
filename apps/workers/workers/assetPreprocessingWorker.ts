@@ -181,7 +181,8 @@ async function readPDFText(buffer: Buffer): Promise<{
         metadata: pdfData.Meta,
       });
     });
-    pdfParser.parseBuffer(buffer);
+    // Verbosity 0 silences pdf.js's noisy warnings (e.g. "Unsupported: field.type of Link"); parse errors are still reported via the error event.
+    pdfParser.parseBuffer(buffer, 0);
   });
 }
 
